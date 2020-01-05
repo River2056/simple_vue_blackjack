@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>BlackJack game</title>
+</head>
+<body>
+    <header>BLACKJACK</header>
+    <div class="container" id="app">
+        <!-- Dealer section -->
+        <div v-if="isGameRunning">
+            <h1>Dealer: {{ dealerPoints }}</h1>
+            <template v-for="card in dealerHand">
+                <img :src="getSource(card)" alt="">
+            </template>
+        </div>
+
+        <!-- Player section -->
+        <div v-if="isGameRunning">
+            <h1>You: {{ playerPoints }}</h1>
+            <template v-for="card in playerHand">
+                <img :src="getSource(card)" alt="">
+            </template>
+        </div>
+
+        <div v-else>
+            <h1>Welcome to River's BlackJack Game</h1>
+            <h2>Press button to start</h2>
+        </div>
+
+        <!-- Action buttons -->
+        <div v-if="!isGameRunning">
+            <button class="btn btn-success" @click="startNewGame">START NEW GAME</button>
+        </div>
+        
+        <div v-else>
+            <button @click="hit" class="btn btn-primary" :disabled="isGameEnded">HIT</button>
+            <button @click="stand" class="btn btn-danger" :disabled="isGameEnded">STAND</button>
+            <button @click="clearBoardNStartNewGame" class="btn btn-success">NEW GAME</button>
+            <button @click="giveUp" class="btn btn-secondary">GIVE UP</button>
+        </div>
+    </div>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
