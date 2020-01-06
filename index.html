@@ -12,26 +12,37 @@
 <body>
     <header>BLACKJACK</header>
     <div class="container" id="app">
-        <!-- Dealer section -->
-        <div v-if="isGameRunning">
-            <h1>Dealer: {{ dealerPoints }}</h1>
-            <template v-for="card in dealerHand">
-                <img :src="getSource(card)" alt="">
-            </template>
-        </div>
+        <!-- Main game section start -->
+        <template v-if="isGameRunning">
+            <!-- Dealer section -->
+            <div>
+                <h1>Dealer: {{ dealerPoints }}</h1>
+                <template v-for="card in dealerHand">
+                    <img :src="getSource(card)" alt="">
+                </template>
+            </div>
+            
+            <!-- Message board -->
+            <div>
+                <h1 id="msg-board">{{ msgBoard }}</h1>
+            </div>
 
-        <!-- Player section -->
-        <div v-if="isGameRunning">
-            <h1>You: {{ playerPoints }}</h1>
-            <template v-for="card in playerHand">
-                <img :src="getSource(card)" alt="">
-            </template>
-        </div>
+            <!-- Player section -->
+            <div>
+                <h1>You: {{ playerPoints }}</h1>
+                <template v-for="card in playerHand">
+                    <img :src="getSource(card)" alt="">
+                </template>
+            </div>
+        </template>
 
-        <div v-else>
-            <h1>Welcome to River's BlackJack Game</h1>
-            <h2>Press button to start</h2>
-        </div>
+        <template v-else>
+            <div>
+                <h1>Welcome to River's BlackJack Game</h1>
+                <h2>Press button to start</h2>
+            </div>
+        </template>
+        <!-- Main game section end -->
 
         <!-- Action buttons -->
         <div v-if="!isGameRunning">

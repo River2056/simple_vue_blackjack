@@ -3,6 +3,7 @@ const app = new Vue({
     data: {
         isGameRunning: false,
         isGameEnded: false,
+        msgBoard: 'Make your move...',
         playerHand: [],
         dealerHand: [],
         playerPoints: 0,
@@ -29,7 +30,7 @@ const app = new Vue({
             this.playerPoints = this.checkHandValue(this.playerHand);
             if(this.playerPoints > 21) {
                 this.playerPoints = 'Busted!'
-                alert('You busted! YOU LOST...');
+                this.msgBoard = 'Busted! You Lost...';
                 this.isGameEnded = true;
                 return;
             }
@@ -40,24 +41,25 @@ const app = new Vue({
                 this.dealerPoints = this.checkHandValue(this.dealerHand);
                 if(this.dealerPoints > 21) {
                     this.dealerPoints = 'Busted!';
-                    alert('Dealer busted! YOU WON!');
+                    this.msgBoard = 'Dealer busted! YOU WON!';
                     this.isGameEnded = true;
                     return;
                 }
             }
             // compare hand with player
             if(this.dealerPoints > this.playerPoints) {
-                alert('YOU LOST...');
+                this.msgBoard = 'YOU LOST...';
             } else if(this.dealerPoints === this.playerPoints) {
-                alert('DRAW');
+                this.msgBoard = 'DRAW';
             } else {
-                alert('YOU WON!');
+                this.msgBoard = 'YOU WON!';
             }
             this.isGameEnded = true;
         },
         giveUp() {
             this.isGameRunning = false;
             this.isGameEnded = false;
+            this.msgBoard = 'Make your move...';
             this.playerHand = [];
             this.dealerHand = [];
             this.playerPoints = 0;
@@ -104,7 +106,7 @@ const app = new Vue({
             this.cardSwitch[index] = true;
             return card;
         },
-        getSource(name) {
+        getSource: function (name) {
             return `./PNG/${name}.png`;
         }
     }

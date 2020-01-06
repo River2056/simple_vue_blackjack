@@ -16,6 +16,13 @@ img {
     width: 12rem;
 }
 
+#msg-board {
+  border: 2px solid #fff;
+  border-radius: 5px;
+  margin: 20px 0;
+  text-align: center;
+}
+
 @media only screen and (max-width: 500px) {
   img {
     width: 6rem;
