@@ -16,9 +16,12 @@
         <template v-if="isGameRunning">
             <!-- Dealer section -->
             <div>
-                <h1>Dealer: {{ dealerPoints }}</h1>
-                <template v-for="card in dealerHand">
-                    <img :src="getSource(card)" alt="">
+                <h1>Dealer: {{ isGameEnded ? dealerPoints : '??' }}</h1>
+                <template v-if="isGameEnded">
+                    <img v-for="card in dealerHand" :src="getSource(card)" alt="">
+                </template>
+                <template v-else>
+                    <img v-for="(card, index) in dealerHand" :src="index === 0 ? './PNG/gray_back.png' : getSource(card)" alt="">
                 </template>
             </div>
             
